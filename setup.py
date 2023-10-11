@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 from typing import List
 
-HYPEN_E_DOT = 'e. '
+HYPEN_E_DOT = '-e. '
 
-def get_requirement_files(file_path: str) -> List[str]:
+def get_requirement_file(file_path: str) -> List[str]:
     '''
         This function will return the list of requirements.
     '''
@@ -24,5 +24,5 @@ setup(
     author = 'Rocky Joseph',
     author_email = 'rockyjoseph055@gmail.com',
     packages = find_packages(),
-    install_requires = get_requirement_files('requirements.txt') 
+    install_requires = get_requirement_file('requirements.txt') 
 )
