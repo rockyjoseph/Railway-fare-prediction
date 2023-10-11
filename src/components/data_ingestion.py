@@ -20,7 +20,7 @@ class DataIngestion:
         logging.info("Entered the Data Ingestion module")
 
         try:
-            df = pd.read_csv('C:\Users\Rocky\Projects\Railway fare prediction\notebook\data\train_price.csv')
+            df = pd.read_csv('notebook\data\train_price.csv')
             logging.info('Read the dataset as dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path), exist_ok=True)
