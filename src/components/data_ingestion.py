@@ -21,6 +21,8 @@ class DataIngestion:
 
         try:
             df = pd.read_csv('notebook/data/train_price.csv')
+            df.drop(columns=['Unnamed: 0','insert_date'], inplace=True)
+
             logging.info('Read the dataset as dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path), exist_ok=True)
@@ -39,5 +41,3 @@ if __name__ == "__main__":
 
     data_transformation = DataTransformation()
     train_data, test_data = data_transformation.initiate_data_transformation()
-    print(train_data)
-    print(test_data)
