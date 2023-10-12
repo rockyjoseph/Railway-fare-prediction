@@ -20,7 +20,7 @@ class DataIngestion:
         logging.info("Entered the Data Ingestion module")
 
         try:
-            df = pd.read_csv('notebook\data\train_price.csv')
+            df = pd.read_csv('notebook/data/train_price.csv')
             logging.info('Read the dataset as dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path), exist_ok=True)
@@ -39,5 +39,5 @@ if __name__ == "__main__":
 
     data_transformation = DataTransformation()
     train_data, test_data = data_transformation.initiate_data_transformation()
-    print(train_data.shape)
-    print(test_data.shape)
+    print(train_data)
+    print(test_data)
