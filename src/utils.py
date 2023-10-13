@@ -25,4 +25,8 @@ def load_object(self):
             return pickle.load(file_object)
 
     except Exception as e:
+<<<<<<< HEAD
         raise CustomException(e, sys)
+=======
+        raise CustomException(e, sys)
+>>>>>>> 23afb2523849890ff1628e1eb43f70afaee7f3b6
