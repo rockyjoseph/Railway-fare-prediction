@@ -6,6 +6,8 @@ from src.exception import CustomException
 
 from dataclasses import dataclass
 
+from src.components.data_validation import DataValidation
+from src.components.model_trainer import ModelTrainer
 from src.components.data_transformation import DataTransformation
 
 @dataclass
@@ -41,3 +43,10 @@ if __name__ == "__main__":
 
     data_transformation = DataTransformation()
     train_data, test_data = data_transformation.initiate_data_transformation()
+
+    data_validation = DataValidation()
+    train_arr, test_arr = data_validation.initiate_data_validation(train_data, test_data)
+    # print(train_arr.shape, test_arr.shape)
+
+    model = ModelTrainer()
+    print(model.initiate_model_trainer(train_arr, test_arr))
