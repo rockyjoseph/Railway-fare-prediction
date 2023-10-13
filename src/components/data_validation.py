@@ -124,9 +124,6 @@ class DataValidation:
 
             logging.info(f'Applying preprocessing object on training dataframe and testing dataframe')
 
-            # input_feature_train_arr = preprocessing_object.fit_transform(input_feature_train_df)
-            # input_feature_train_arr = preprocessing_object.fit_transform(input_feature_test_df)
-
             train_arr = np.c_[
                 input_feature_train_df, target_feature_train_df
             ]
@@ -136,11 +133,6 @@ class DataValidation:
             ]
 
             logging.info(f"Saved Preprocessing Object!")
-
-            # save_object(
-            #     file_path = self.data_validation_config.preprocessor_obj_file_path,
-            #     obj = preprocessing_object
-            # )
 
             return train_arr, test_arr
 
