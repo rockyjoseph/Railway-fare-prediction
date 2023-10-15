@@ -49,8 +49,4 @@ if __name__ == "__main__":
     # print(train_arr.shape, test_arr.shape)
 
     model = ModelTrainer()
-<<<<<<< HEAD
     print(model.initiate_model_trainer(train_arr, test_arr))
-=======
-    print(model.initiate_model_trainer(train_arr, test_arr))
->>>>>>> 23afb2523849890ff1628e1eb43f70afaee7f3b6
