@@ -18,6 +18,8 @@ list_of_files = [
     f"src/components/model_evaluation.py",
     f"src/pipeline/__init__.py",
     f"src/pipeline/predict_pipeline.py",
+    f"templates/index.html",
+    f"templates/style.css",
     "app.py",
     "Dockerfile",
     "requirements.txt",

@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    position: relative;
+    background-image: url('assets/train.jpg');
+    opacity: 0.87;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: cover;
+    overflow: hidden;
+}
+
+form{
+    margin-left: 3vw;
+    border-radius: 1vw;
+    background-color: rgb(27, 153, 216);
+    opacity: 1;
+    height: 34vw;
+    width: 33vw;
+    margin-top: 4vw;
+    padding: 20px;
+}
+
+form h1{
+    text-align: center;
+    margin: 15px 0;
+}
+
+form label{
+    font-size: 1.3vw;
+}
+
+.mb-3 label::before{
+    content: "*";
+    color: red;
+}
+
+form .mb-3{
+    padding: 0.7vw;
+    margin: 1px; 
+}
+
+main{
+    border-radius: 7px;
+    background-color: rgb(229, 222, 222);
+}
+
+.mb-3 select::before{
+    content: "*";
+    color: red;
+}
+
+.mb-3 select{
+    width: 21vw;
+    height: 1.7vw;
+    border-radius: 7px;
+    font-size: 1vw;
+    background-color: aliceblue;
+    border: none;
+}
+
+.mb-3 select:hover{
+    background-color: rgb(216, 222, 225);
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.btn{
+    background-color: aliceblue;
+    width: 20vw;
+    height: 2vw;
+    border-radius: 3vw;
+    border: none;
+    font-size: 1.2vw;
+    padding: 3px;
+    margin-left: 4vw;
+}
+
+.train{
+    width: 14.3vw;
+    height: 1.7vw;
+    background-color: aliceblue;
+    border: none;
+    border-radius: 7px;
+    font-size: 1vw;
+    padding-left: 10px;
+}
+
+.train:hover{
+    background-color: rgb(216, 222, 225);
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: rgb(216, 222, 225);
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+#ticket-price{
+    color: black;
+    margin-left: 5vw;
+    margin-top: 2vw;
+    background-color: rgb(27, 153, 216);
+    text-align: center;
+    width: 33vw;
+    height: 2.5vw;
+    padding: 5px;
+    border-radius: 15px;
+}

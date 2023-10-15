@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway fare prediction App</title>
+    <link rel="stylesheet" href="/templates/style.css">
+</head>
+
+<body>
+    <div class="login">
+        <h2 id="ticket-price">
+            The predicted train ticket price is {{results}}
+        </h2>
+
+        <form action="{{ url_for('price_prediction')}}" method="post">
+            <h1>
+                <legend>Railway fare prediction App</legend>
+            </h1>
+            <main>
+                <div class="mb-3">
+                    <label class="form-label">Origin:</label>
+                    <select class="form-control" name="origin" placeholder="Enter you Origin" required>
+                        <option class="placeholder" selected disabled value="">Select your origin</option>
+                        <option value="madrid">
+                            MADRID
+                        </option>
+                        <option value="barcelona">
+                            BARCELONA
+                        </option>
+                        <option value="valencia">
+                            VALENCIA
+                        </option>
+                        <option value="sevilla">
+                            SEVILLA
+                        </option>
+                        <option value="ponferrada">
+                            PONFERRADA
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Destination</label>
+                    <select class="form-control" name="ethnicity" placeholder="Enter you Destination" required>
+                        <option class="placeholder" selected disabled value="">Select Destination</option>
+                        <option value="madrid">
+                            MADRID
+                        </option>
+                        <option value="barcelona">
+                            BARCELONA
+                        </option>
+                        <option value="valencia">
+                            VALENCIA
+                        </option>
+                        <option value="sevilla">
+                            SEVILLA
+                        </option>
+                        <option value="ponferrada">
+                            PONFERRADA
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Train origin Timing</label>
+                    <input type="datetime-local" class="train" name="start_date"
+                        placeholder="Enter your train origin timing">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Train destination Timing</label>
+                    <input type="datetime-local" class="train" name="end_date"
+                        placeholder="Enter your train destination timing">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Train type</label>
+                    <select class="form-control" name="train_type" placeholder="Enter your Train type" required>
+                        <option class="placeholder" selected disabled value="">Select Train type</option>
+                        <option value="ave">
+                            AVE
+                        </option>
+                        <option value="regional">
+                            Regional
+                        </option>
+                        <option value="alvia">
+                            ALVIA
+                        </option>
+                        <option value="r.express">
+                            R.EXPRES
+                        </option>
+                        <option value="av_city">
+                            AV City
+                        </option>
+                        <option value="intercity">
+                            INTERCITY
+                        </option>
+                        <option value="ave_tgv">
+                            AVE-TGV
+                        </option>
+                        <option value="md_ld">
+                            MD-LD
+                        </option>
+                        <option value="ld_md">
+                            LD-MD
+                        </option>
+                        <option value="ave_md">
+                            AVE-MD
+                        </option>
+                        <option value="md_ave">
+                            MD-AVE
+                        </option>
+                        <option value="ave_ld">
+                            AVE-LD
+                        </option>
+                        <option value="md">
+                            MD
+                        </option>
+                        <option value="trenhotel">
+                            TRENHOTEL
+                        </option>
+                        <option value="ld">
+                            LD
+                        </option>
+                        <option value="ld_ave">
+                            LD-AVE
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Train class</label>
+                    <select class="form-control" name="train_class" placeholder="Enter your train class" required>
+                        <option class="placeholder" selected disabled value="">Select train class</option>
+                        <option value="turista">
+                            Turista
+                        </option>
+                        <option value="preferente">
+                            Preferente
+                        </option>
+                        <option value="turista_plus">
+                            Turista Plus
+                        </option>
+                        <option value="turista_con_enlace">
+                            Turista con enlace
+                        </option>
+                        <option value="cama_turista">
+                            Cama Turista
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Fare</label>
+                    <select class="form-control" name="fare" placeholder="Enter your fare" required>
+                        <option class="placeholder" selected disabled value="">Select fare</option>
+                        <option value="promo">
+                            Promo
+                        </option>
+                        <option value="adulto_ida">
+                            Adulto ida
+                        </option>
+                        <option value="flexible">
+                            Flexible
+                        </option>
+                        <option value="promo_plus">
+                            Promo +
+                        </option>
+                        <option value="mesa">
+                            Mesa
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <input class="btn" type="submit" value="Predicting your price" required />
+                </div>
+            </main>
+        </form>
+        
+</body>
+
+</html>

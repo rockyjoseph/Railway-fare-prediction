@@ -27,7 +27,6 @@ class CustomData:
         start_date: int,
         end_date: str,
         train_type: str,
-        price: float,
         train_class: str,
         fare: str
     ):
@@ -37,7 +36,6 @@ class CustomData:
         self.start_date = start_date
         self.end_date = end_date
         self.train_type = train_type
-        self.price = price
         self.train_class = train_class
         self.fare = fare
 
@@ -49,7 +47,6 @@ class CustomData:
                 'start_date': [self.start_date],
                 'end_date': [self.end_date],
                 'train_type': [self.train_type],
-                'price': [self.origin],
                 'train_class': [self.train_class],
                 'fare': [self.fare],
             }
