@@ -12,6 +12,9 @@ from src.components.data_transformation import DataTransformation
 
 @dataclass
 class DataIngestionConfig:
+    '''
+        Makes a new folder named artifacts to store the data.
+    '''
     raw_data_path: str = os.path.join('artifacts','data.csv')
 
 class DataIngestion:
@@ -19,6 +22,10 @@ class DataIngestion:
         self.ingestion_config = DataIngestionConfig()
 
     def initiate_data_ingestion(self):
+        '''
+            Takes and returns a data file in the folder. 
+        '''
+
         logging.info("Entered the Data Ingestion module")
 
         try:
@@ -45,8 +52,7 @@ if __name__ == "__main__":
     train_data, test_data = data_transformation.initiate_data_transformation()
 
     data_validation = DataValidation()
-    train_arr, test_arr = data_validation.initiate_data_validation(train_data, test_data)
-    # print(train_arr.shape, test_arr.shape)
+    train_arr, test_arr,_ = data_validation.initiate_data_validation(train_data, test_data)
 
     model = ModelTrainer()
     print(model.initiate_model_trainer(train_arr, test_arr))

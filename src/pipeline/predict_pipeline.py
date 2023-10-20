@@ -11,8 +11,11 @@ class PredictPipeline:
     def predict(self, features):
         try:
             model_path = 'artifacts\model.pkl'
+            preprocessor_path = 'artifacts\preprocessor.pkl'
             model = load_object(file_path = model_path)
-            pred = model.predict(features)
+            preprocessor = load_object(file_path = preprocessor_path)
+            data_scaled = preprocessor.transform(features)
+            pred = model.predict(data_scaled)
 
             return pred
 
@@ -24,8 +27,14 @@ class CustomData:
     def __init__(self,
         origin: str,
         destination: str,
-        start_date: int,
-        end_date: str,
+        start_day: int,
+        start_minutes: int,
+        start_hours: int,
+        start_month: int,
+        end_day: int,
+        end_minutes: int,
+        end_hours: int,
+        end_month: int,
         train_type: str,
         train_class: str,
         fare: str
@@ -33,22 +42,33 @@ class CustomData:
 
         self.origin = origin
         self.destination = destination
-        self.start_date = start_date
-        self.end_date = end_date
+        self.start_minutes = start_minutes
+        self.start_hours = start_hours
+        self.start_month = start_month
+        self.end_day = end_day
+        self.end_minutes = end_minutes
+        self.end_hours = end_hours
+        self.end_month = end_month
         self.train_type = train_type
         self.train_class = train_class
-        self.fare = fare
+        self.fare = fare 
 
     def get_data_as_frame(self):
         try:
             custom_data_input = {
                 'origin': [self.origin],
                 'destination': [self.destination],
-                'start_date': [self.start_date],
-                'end_date': [self.end_date],
+                'start_day': [self.start_day],
+                'start_minutes': [self.start_minutes],
+                'start_hours': [self.start_hours],
+                'start_month': [self.start_month],
+                'end_day': [self.end_day],
+                'end_hours': [self.end_hours],
+                'end_minutes': [self.end_minutes],
+                'end_month': [self.end_month],
                 'train_type': [self.train_type],
                 'train_class': [self.train_class],
-                'fare': [self.fare],
+                'fare': [self.fare]
             }
 
             return pd.DataFrame(custom_data_input)

@@ -12,14 +12,23 @@ from src.utils import save_object
 from src.exception import CustomException
 
 @dataclass
+class DataValidationConfig:
+    preprocessor_object_file_path = os.path.join('artifacts','preprocessor.pkl')
+
 class DataValidation:
+    def __init__(self):
+        self.data_validation_config = DataValidationConfig()
+
     def get_data_validation_object(self):
+        '''
+            This function will return the preprocessing of features.
+        '''
         try:
             categorical_columns = ['origin','destination','train_type','train_class','fare']
 
             cat_pipeline = Pipeline(
                 steps = [
-                    ('ohe', OneHotEncoder())
+                    ('ohe', OneHotEncoder(drop='first', sparse=False))
                 ]
             )
 
@@ -28,7 +37,7 @@ class DataValidation:
             preprocessor = ColumnTransformer(
                 [
                     ("cat_pipelines", cat_pipeline, categorical_columns)
-                ]
+                ], remainder = 'passthrough'
             )
 
             return preprocessor
@@ -37,11 +46,18 @@ class DataValidation:
             raise CustomException(e, sys)
 
     def initiate_data_validation(self, train_path, test_path):
+        '''
+            This function will clean the features in the data.
+        '''
         try:
+            # Reading the dataset
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
 
+            # Declaring objects and features.
+            target_column_name = 'price'
             preprocessing_object = self.get_data_validation_object()
+            categorical_features = ['origin','destination','train_type','train_class','fare']
 
             # Making different columns of datetime format
             train_df['start_month'] = pd.to_datetime(train_df.start_date).dt.month
@@ -67,15 +83,8 @@ class DataValidation:
 
 
             # Dropping the features end_date and start_date which is not of use.
-            train_df.drop(columns=['start_date'], inplace=True)
-            train_df.drop(columns=['end_date'], inplace=True)
-
-            test_df.drop(columns=['start_date'], inplace=True)
-            test_df.drop(columns=['end_date'], inplace=True)
-
-            # numerical_features = ['start_month','start_day','start_hours','start_minutes','end_month','end_day','end_hours','end_minutes']
-            categorical_features = ['origin','destination','train_type','train_class','fare']
-            target_column_name = 'price'
+            train_df.drop(columns=['start_date','end_date'], inplace=True)
+            test_df.drop(columns=['start_date','end_date'], inplace=True)
 
             logging.info("Read the Train-Test data")
             logging.info("Starting Preprocessing process.....")
@@ -106,15 +115,6 @@ class DataValidation:
             # Dropping the remaining NULL values in test_data.
             test_df.dropna(inplace=True)
 
-            train_encoder = pd.get_dummies(train_df[categorical_features], drop_first=True)
-            train_df[train_encoder.columns] = train_encoder
-
-            test_encoder = pd.get_dummies(test_df[categorical_features], drop_first=True)
-            test_df[test_encoder.columns] = test_encoder
-
-            train_df.drop(categorical_features, axis=1, inplace=True)
-            test_df.drop(categorical_features, axis=1, inplace=True)
-
             # Applying train-test split.
             input_feature_train_df = train_df.drop(columns=[target_column_name], axis=1)
             target_feature_train_df = train_df[target_column_name]
@@ -124,17 +124,25 @@ class DataValidation:
 
             logging.info(f'Applying preprocessing object on training dataframe and testing dataframe')
 
+            input_feature_train_arr = preprocessing_object.fit_transform(input_feature_train_df)
+            input_feature_test_arr = preprocessing_object.transform(input_feature_test_df)
+
             train_arr = np.c_[
-                input_feature_train_df, target_feature_train_df
+                input_feature_train_arr, target_feature_train_df
             ]
 
             test_arr = np.c_[
-                input_feature_test_df, target_feature_test_df
+                input_feature_test_arr, target_feature_test_df
             ]
+
+            save_object(
+                file_path = self.data_validation_config.preprocessor_object_file_path,
+                obj = preprocessing_object
+            )
 
             logging.info(f"Saved Preprocessing Object!")
 
-            return train_arr, test_arr
+            return train_arr, test_arr, self.data_validation_config.preprocessor_object_file_path
 
         except Exception as e:
             raise CustomException(e, sys)
