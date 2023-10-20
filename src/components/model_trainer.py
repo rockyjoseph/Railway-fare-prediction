@@ -13,6 +13,9 @@ from src.components.model_evaluation import ModelEvaluation
 
 @dataclass
 class ModelTrainerConfig:
+    '''
+        Makes a file to store the model.
+    '''
     trained_model_file_path = os.path.join('artifacts','model.pkl')
 
 class ModelTrainer:
@@ -20,6 +23,10 @@ class ModelTrainer:
         self.trained_model_config = ModelTrainerConfig()
 
     def initiate_model_trainer(self, train_arr, test_arr):
+        '''
+            Training the models for the data prediction.
+        '''
+
         try:
             logging.info("Splitting train-test input data")
 

@@ -7,6 +7,10 @@ from sklearn.metrics import r2_score
 @dataclass
 class ModelEvaluation:
     def evaluate_model(X_train, X_test, y_train, y_test, models):
+        '''
+            Predicting the output of the model.
+        '''
+
         try:
             report = {}
 

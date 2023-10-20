@@ -9,6 +9,9 @@ from src.exception import CustomException
 
 @dataclass
 class DataTransformationConfig:
+    '''
+        Takes and return two splitted dataset in the folder.
+    '''
     train_data_path: str = os.path.join('artifacts','train.csv')
     test_data_path: str = os.path.join('artifacts','test.csv')
 

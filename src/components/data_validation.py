@@ -13,6 +13,9 @@ from src.exception import CustomException
 
 @dataclass
 class DataValidationConfig:
+    '''
+        Creates a file for preprocessing the data coming as input.
+    '''
     preprocessor_object_file_path = os.path.join('artifacts','preprocessor.pkl')
 
 class DataValidation:
